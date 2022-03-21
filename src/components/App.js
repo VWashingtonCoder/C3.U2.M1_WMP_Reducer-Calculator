@@ -3,7 +3,7 @@ import './App.css';
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 import reducer, { initialState } from '../reducers';
-import { /*addOne,*/ applyNumber } from '../actions';
+import { /*addOne,*/ applyNumber, changeOperation } from '../actions';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -13,10 +13,13 @@ function App() {
   // const onClickAddOne = () => {
   //   dispatch(addOne())
   // }
-  const onClick = evt => {
+  const onClickNums = evt => {
     const number = evt.target.value
-    console.log(`total: ${total}, operation: ${operation}, number: ${number}`)
     dispatch(applyNumber(number))
+  }
+  const onClickOperator = evt => {
+    const operator = evt.target.value
+    dispatch(changeOperation(operator))
   }
   return (
     <div className="App">
@@ -41,27 +44,27 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={1} onClick={onClick}/>
-              <CalcButton value={2} onClick={onClick}/>
-              <CalcButton value={3} onClick={onClick}/>
+              <CalcButton value={1} onClick={onClickNums}/>
+              <CalcButton value={2} onClick={onClickNums}/>
+              <CalcButton value={3} onClick={onClickNums}/>
             </div>
 
             <div className="row">
-              <CalcButton value={4} onClick={onClick}/>
-              <CalcButton value={5} onClick={onClick}/>
-              <CalcButton value={6} onClick={onClick}/>
+              <CalcButton value={4} onClick={onClickNums}/>
+              <CalcButton value={5} onClick={onClickNums}/>
+              <CalcButton value={6} onClick={onClickNums}/>
             </div>
 
             <div className="row">
-              <CalcButton value={7} onClick={onClick}/>
-              <CalcButton value={8} onClick={onClick}/>
-              <CalcButton value={9} onClick={onClick}/>
+              <CalcButton value={7} onClick={onClickNums}/>
+              <CalcButton value={8} onClick={onClickNums}/>
+              <CalcButton value={9} onClick={onClickNums}/>
             </div>
 
             <div className="row">
-              <CalcButton value={"+"}/>
-              <CalcButton value={"*"}/>
-              <CalcButton value={"-"}/>
+              <CalcButton value={"+"} onClick={onClickOperator}/>
+              <CalcButton value={"*"} onClick={onClickOperator}/>
+              <CalcButton value={"-"} onClick={onClickOperator}/>
             </div>
 
             <div className="row ce_button">
