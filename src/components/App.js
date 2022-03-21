@@ -3,13 +3,12 @@ import './App.css';
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 import reducer, { initialState } from '../reducers';
-import { /*addOne,*/ applyNumber, changeOperation } from '../actions';
+import { /*addOne,*/ applyNumber, changeOperation, clearDisplay } from '../actions';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { memory, operation, total } = state
-  
-  console.log(total)
+
   // const onClickAddOne = () => {
   //   dispatch(addOne())
   // }
@@ -17,10 +16,16 @@ function App() {
     const number = evt.target.value
     dispatch(applyNumber(number))
   }
+
   const onClickOperator = evt => {
     const operator = evt.target.value
     dispatch(changeOperation(operator))
   }
+
+  const onClickClear = () => {
+    dispatch(clearDisplay())
+  }
+  
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -68,7 +73,7 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton value={"CE"} onClick={onClickClear}/>
             </div>
 
           </form>
