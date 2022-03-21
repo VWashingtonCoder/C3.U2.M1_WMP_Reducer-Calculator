@@ -8,5 +8,6 @@ export const addOne = () => {
 }
 
 export const applyNumber = (number) => {
+    console.log(number)
     return({type:APPLY_NUMBER, payload:number});
 }
